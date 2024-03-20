@@ -1,0 +1,20 @@
+version: "3"
+services:
+  laravel_db:
+    image: postgres:9.6
+    restart: always
+    container_name: laravel_db
+    ports:
+      - 5434:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha
+      POSTGRES_DB: mydatabase
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d postgres -U postgres" ]
+      interval: 2s
+      timeout: 30s
+      retries: 20
+      start_period: 1s
