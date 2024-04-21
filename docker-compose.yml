@@ -1,7 +1,7 @@
 version: "3"
 services:
   laravel_db:
-    image: postgres:9.6
+    image: postgres:16.2
     restart: always
     container_name: laravel_db
     ports:
@@ -14,7 +14,7 @@ services:
       - ./postgresql:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d postgres -U postgres" ]
-      interval: 2s
+      interval: 30s
       timeout: 30s
       retries: 20
       start_period: 1s
